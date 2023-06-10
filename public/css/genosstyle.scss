@@ -1,0 +1,483 @@
+$primary-color: #1c5e8e;
+$primary-secondary: #ffa500;
+$primary-secondary3: #c29800;
+$primary-secondary2: rgb(218, 171, 1);
+$primary-colord1: rgb(173, 0, 0);
+$primary-colorl1: #349feb;
+$primary-colorl2: #d5eeff;
+$primary-soft-color1: #1c5e8e77;
+$background-color: hwb(240 96% 3%);
+$background-blue: #96d5f4;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-blue {
+  background-color: $background-blue;
+}
+.bg-primary {
+  background-color: $primary-color;
+}
+
+.bg-secondary {
+  background-color: $primary-secondary;
+}
+
+.bg-secondary3 {
+  background-color: $primary-secondary3;
+}
+
+.bg-primarylight {
+  background-color: $primary-colorl1;
+}
+
+.bg-primarylight2 {
+  background-color: $primary-colorl2;
+}
+
+.text-primary {
+  color: $primary-color;
+}
+
+.text-secondary {
+  color: $primary-secondary;
+}
+
+body {
+  font-family: "Poppins", sans-serif !important;
+  background-color: $background-color;
+  z-index: -2;
+}
+
+.hero {
+  height: 800px;
+  z-index: -10;
+  position: relative;
+  background-color: $background-blue;
+  overflow: hidden;
+
+  .obj1 {
+    right: -30rem;
+  }
+
+  .obj3 {
+    left: -30rem;
+    top: -40rem;
+  }
+}
+
+.obj2 {
+  left: -30rem;
+  bottom: -30rem;
+}
+
+.obj4 {
+  left: -15rem;
+  top: -10rem;
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+.obj5 {
+  right: -15rem;
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  z-index: 0;
+  height: 80%;
+}
+
+.txt-shdw {
+  text-shadow: 2px 2px #0007;
+}
+
+.bg-overlay {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to top, #96d5f477, #96d5f4);
+    opacity: 1;
+  }
+}
+
+.nav-link {
+  color: black;
+  transition: all;
+  transition-duration: 300ms;
+  &:hover {
+    color: $primary-color;
+    font-weight: bold;
+  }
+}
+// .ourservice{
+//     width: calc(100vw - 100px);
+//     background-color: white;
+//     box-shadow: 0 0 5px #ddd;
+//     height: 15rem;
+//     margin-top: -3rem;
+//     margin-right: auto;
+//     margin-left: auto;
+//     border-radius: 30px;
+// }
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -70px;
+  visibility: hidden;
+}
+
+.flip-x {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.ourservice {
+  padding-bottom: 2rem;
+
+  .card {
+    box-shadow: 5px 5px 20px 1px #6666;
+    height: 10rem;
+    border-radius: 30px;
+    background-color: white;
+    transition: all ease-in-out;
+    transition-duration: 300ms;
+    cursor: pointer;
+
+    .icon.hovered {
+      transition-duration: 500ms;
+      scale: 1.1;
+    }
+
+    &:hover {
+      scale: 1.1;
+      background-color: $primary-secondary;
+    }
+  }
+}
+
+.riwayat {
+  background-image: linear-gradient(#96d5f477, #96d5f4);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  position: relative;
+
+  .card {
+    box-shadow: 5px 5px 20px 1px #eee;
+    border-radius: 10px;
+    background-color: white;
+    padding: 1rem;
+  }
+}
+
+.purpose {
+  background-color: $background-blue;
+
+  .card {
+    box-shadow: 5px 5px 20px 1px #eee;
+    border-radius: 10px;
+    padding: 2rem;
+  }
+}
+
+.white-shadow {
+  box-shadow: 5px 5px 1px white;
+}
+
+.secondary-shadow {
+  box-shadow: 5px 5px 1px $primary-secondary;
+}
+
+.history {
+  background-color: white;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+
+  .card {
+    box-shadow: 5px 5px 20px 1px #eee;
+    border-radius: 10px;
+    background-color: white;
+    padding: 1rem;
+  }
+}
+
+.client {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  .card {
+    box-shadow: 5px 5px 20px 1px #eee;
+    border-radius: 10px;
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .imagelogo {
+    object-fit: contain;
+    filter: grayscale(100%);
+    cursor: pointer;
+    transition: all;
+    transition-duration: 300ms;
+
+    &:hover {
+      filter: none;
+    }
+  }
+}
+
+.kontak {
+  background-color: white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  .link {
+    transition: all;
+    transition-duration: 300ms;
+    cursor: pointer;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.link {
+  transition: all;
+  transition-duration: 300ms;
+  display: block;
+  cursor: pointer;
+  color: #333;
+  &:hover {
+    color: black;
+    font-weight: bold;
+  }
+}
+
+.footer {
+  background-color: $background-blue;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  .title {
+    color: black;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .content {
+    color: #333;
+  }
+
+  .link {
+    transition: all;
+    transition-duration: 300ms;
+    display: block;
+    cursor: pointer;
+    color: #333;
+    &:hover {
+      color: black;
+      font-weight: bold;
+    }
+  }
+
+  .iconsocial {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    display: inline-block;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 300ms;
+    color: #333;
+    &:hover {
+      scale: 1.1;
+      color: black;
+    }
+  }
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px white;
+}
+
+.button {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: $primary-secondary;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #eee;
+  z-index: 100;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 500ms;
+  font-weight: bold;
+  &:hover {
+    scale: 1.1;
+    background-color: $primary-secondary2;
+  }
+}
+
+.button-primary {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #eee;
+  z-index: 100;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 500ms;
+  font-weight: bold;
+  &:hover {
+    scale: 1.1;
+    background-color: $primary-colorl1;
+  }
+}
+
+.button-joinclass {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #ffa500;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #eee;
+  z-index: 100;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 500ms;
+  font-weight: bold;
+  &:hover {
+    scale: 1.1;
+    background-color: orangered;
+  }
+}
+.button-sm {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 50px;
+  box-shadow: 5px 5px 5px #ddd;
+}
+
+.question {
+  margin-top: 7rem;
+}
+
+// ANIMATION
+
+.acc1 {
+  animation-name: moveslightly;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  top: 23%;
+  right: 45%;
+  height: 4%;
+}
+
+.acc2 {
+  animation-name: moveslightly;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  top: 23%;
+  right: 30%;
+  height: 10%;
+}
+
+.acc3 {
+  animation-name: moveslightly;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  top: 13%;
+  right: 30%;
+  height: 6%;
+}
+
+.doanimation {
+  animation-name: moveslightly;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  width: 100%;
+  rotate: 90deg;
+}
+
+.doanimation1 {
+  animation-name: moveslightly;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes moveslightly {
+  25% {
+    transform: translate(10px, 20px);
+  }
+
+  50% {
+    transform: translate(20px, 10px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.fasilitas {
+  p:nth-child(odd) {
+    background-color: $primary-color;
+    padding: 10px;
+    color: white;
+  }
+  p:nth-child(even) {
+    background-color: $primary-secondary;
+    padding: 10px;
+    color: white;
+  }
+}
+
+.tentangkamidashboard {
+  p:nth-child(odd) {
+    background: $primary-color;
+    box-shadow: 5px 5px 1px white;
+    padding: 30px;
+    margin-right: 50px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  p:nth-child(even) {
+    background: $primary-secondary;
+    box-shadow: 5px 5px 1px white;
+    padding: 30px;
+    margin-left: 50px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+}
+
+.berita {
+  section:nth-child(odd) {
+    flex-direction: row;
+    margin-bottom: 30px;
+  }
+  section:nth-child(even) {
+    flex-direction: row-reverse;
+    margin-bottom: 30px;
+  }
+}

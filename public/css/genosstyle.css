@@ -1,0 +1,436 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.bg-blue {
+  background-color: #96d5f4;
+}
+
+.bg-primary {
+  background-color: #1c5e8e;
+}
+
+.bg-secondary {
+  background-color: #ffa500;
+}
+
+.bg-secondary3 {
+  background-color: #c29800;
+}
+
+.bg-primarylight {
+  background-color: #349feb;
+}
+
+.bg-primarylight2 {
+  background-color: #d5eeff;
+}
+
+.text-primary {
+  color: #1c5e8e;
+}
+
+.text-secondary {
+  color: #ffa500;
+}
+
+body {
+  font-family: "Poppins", sans-serif !important;
+  background-color: hwb(240 96% 3%);
+  z-index: -2;
+}
+
+.hero {
+  height: 800px;
+  z-index: -10;
+  position: relative;
+  background-color: #96d5f4;
+  overflow: hidden;
+}
+.hero .obj1 {
+  right: -30rem;
+}
+.hero .obj3 {
+  left: -30rem;
+  top: -40rem;
+}
+
+.obj2 {
+  left: -30rem;
+  bottom: -30rem;
+}
+
+.obj4 {
+  left: -15rem;
+  top: -10rem;
+  transform: scaleY(-1);
+}
+
+.obj5 {
+  right: -15rem;
+  transform: scaleY(-1);
+  z-index: 0;
+  height: 80%;
+}
+
+.txt-shdw {
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.4666666667);
+}
+
+.bg-overlay {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-overlay:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to top, rgba(150, 213, 244, 0.4666666667), #96d5f4);
+  opacity: 1;
+}
+
+.nav-link {
+  color: black;
+  transition: all;
+  transition-duration: 300ms;
+}
+.nav-link:hover {
+  color: #1c5e8e;
+  font-weight: bold;
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -70px;
+  visibility: hidden;
+}
+
+.flip-x {
+  transform: scaleX(-1);
+}
+
+.ourservice {
+  padding-bottom: 2rem;
+}
+.ourservice .card {
+  box-shadow: 5px 5px 20px 1px rgba(102, 102, 102, 0.4);
+  height: 10rem;
+  border-radius: 30px;
+  background-color: white;
+  transition: all ease-in-out;
+  transition-duration: 300ms;
+  cursor: pointer;
+}
+.ourservice .card .icon.hovered {
+  transition-duration: 500ms;
+  scale: 1.1;
+}
+.ourservice .card:hover {
+  scale: 1.1;
+  background-color: #ffa500;
+}
+
+.riwayat {
+  background-image: linear-gradient(rgba(150, 213, 244, 0.4666666667), #96d5f4);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  position: relative;
+}
+.riwayat .card {
+  box-shadow: 5px 5px 20px 1px #eee;
+  border-radius: 10px;
+  background-color: white;
+  padding: 1rem;
+}
+
+.purpose {
+  background-color: #96d5f4;
+}
+.purpose .card {
+  box-shadow: 5px 5px 20px 1px #eee;
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.white-shadow {
+  box-shadow: 5px 5px 1px white;
+}
+
+.secondary-shadow {
+  box-shadow: 5px 5px 1px #ffa500;
+}
+
+.history {
+  background-color: white;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+}
+.history .card {
+  box-shadow: 5px 5px 20px 1px #eee;
+  border-radius: 10px;
+  background-color: white;
+  padding: 1rem;
+}
+
+.client {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.client .card {
+  box-shadow: 5px 5px 20px 1px #eee;
+  border-radius: 10px;
+  background-color: white;
+  padding: 1rem;
+}
+.client .imagelogo {
+  -o-object-fit: contain;
+     object-fit: contain;
+  filter: grayscale(100%);
+  cursor: pointer;
+  transition: all;
+  transition-duration: 300ms;
+}
+.client .imagelogo:hover {
+  filter: none;
+}
+
+.kontak {
+  background-color: white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.kontak .link {
+  transition: all;
+  transition-duration: 300ms;
+  cursor: pointer;
+}
+.kontak .link:hover {
+  color: #1c5e8e;
+}
+
+.link {
+  transition: all;
+  transition-duration: 300ms;
+  display: block;
+  cursor: pointer;
+  color: #333;
+}
+.link:hover {
+  color: black;
+  font-weight: bold;
+}
+
+.footer {
+  background-color: #96d5f4;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.footer .title {
+  color: black;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+.footer .content {
+  color: #333;
+}
+.footer .link {
+  transition: all;
+  transition-duration: 300ms;
+  display: block;
+  cursor: pointer;
+  color: #333;
+}
+.footer .link:hover {
+  color: black;
+  font-weight: bold;
+}
+.footer .iconsocial {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  display: inline-block;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 300ms;
+  color: #333;
+}
+.footer .iconsocial:hover {
+  scale: 1.1;
+  color: black;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px white;
+}
+
+.button {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #ffa500;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #eee;
+  z-index: 100;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 500ms;
+  font-weight: bold;
+}
+.button:hover {
+  scale: 1.1;
+  background-color: rgb(218, 171, 1);
+}
+
+.button-primary {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #1c5e8e;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #eee;
+  z-index: 100;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 500ms;
+  font-weight: bold;
+}
+.button-primary:hover {
+  scale: 1.1;
+  background-color: #349feb;
+}
+
+.button-joinclass {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #ffa500;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px #eee;
+  z-index: 100;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 500ms;
+  font-weight: bold;
+}
+.button-joinclass:hover {
+  scale: 1.1;
+  background-color: orangered;
+}
+
+.button-sm {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #1c5e8e;
+  color: white;
+  border-radius: 50px;
+  box-shadow: 5px 5px 5px #ddd;
+}
+
+.question {
+  margin-top: 7rem;
+}
+
+.acc1 {
+  animation-name: moveslightly;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  top: 23%;
+  right: 45%;
+  height: 4%;
+}
+
+.acc2 {
+  animation-name: moveslightly;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+  top: 23%;
+  right: 30%;
+  height: 10%;
+}
+
+.acc3 {
+  animation-name: moveslightly;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  top: 13%;
+  right: 30%;
+  height: 6%;
+}
+
+.doanimation {
+  animation-name: moveslightly;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  width: 100%;
+  rotate: 90deg;
+}
+
+.doanimation1 {
+  animation-name: moveslightly;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes moveslightly {
+  25% {
+    transform: translate(10px, 20px);
+  }
+  50% {
+    transform: translate(20px, 10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.fasilitas p:nth-child(odd) {
+  background-color: #1c5e8e;
+  padding: 10px;
+  color: white;
+}
+.fasilitas p:nth-child(even) {
+  background-color: #ffa500;
+  padding: 10px;
+  color: white;
+}
+
+.tentangkamidashboard p:nth-child(odd) {
+  background: #1c5e8e;
+  box-shadow: 5px 5px 1px white;
+  padding: 30px;
+  margin-right: 50px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.tentangkamidashboard p:nth-child(even) {
+  background: #ffa500;
+  box-shadow: 5px 5px 1px white;
+  padding: 30px;
+  margin-left: 50px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.berita section:nth-child(odd) {
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+.berita section:nth-child(even) {
+  flex-direction: row-reverse;
+  margin-bottom: 30px;
+}
