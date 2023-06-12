@@ -439,3 +439,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   height: inherit !important;
   min-height: 8rem;
 }
+
+.bg-primarylight {
+    background-color: #AECBFA;
+    color: white;
+}

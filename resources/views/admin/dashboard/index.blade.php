@@ -4,5 +4,7 @@
 
 @endsection
 @section('content')
-    asdasda
+    <div>
+        {{}}
+    </div>
 @endsection
