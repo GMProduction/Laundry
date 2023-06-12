@@ -13,32 +13,45 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get(
-    '/',
-    function () {
-        return view('admin.dashboard.index');
-    }
-);
 
-Route::prefix('paket')->group(
-    function () {
-        Route::get('/datatable', [\App\Http\Controllers\PaketController::class, 'datatable'])->name('paket.datatable');
-        Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\PaketController::class, 'index'])->name('paket');
+Route::match(['GET','POST'],'login',[\App\Http\Controllers\LoginController::class,'index'])->name('login');
+Route::get('logout',[\App\Http\Controllers\LoginController::class,'logout'])->name('logout');
 
-    }
-);
+Route::middleware('auth')->group(function (){
 
-Route::prefix('user')->group(
-    function () {
-        Route::get('/datatable', [\App\Http\Controllers\UserController::class, 'datatable'])->name('user.datatable');
-        Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\UserController::class, 'index'])->name('user');
-    }
-);
+    Route::get(
+        '/',
+        function () {
+            return view('admin.dashboard.index');
+        }
+    )->name('dashboard');
+    Route::prefix('paket')->group(
+        function () {
+            Route::get('/datatable', [\App\Http\Controllers\PaketController::class, 'datatable'])->name('paket.datatable');
+            Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\PaketController::class, 'index'])->name('paket');
+
+        }
+    );
+
+    Route::prefix('user')->group(
+        function () {
+            Route::get('/datatable', [\App\Http\Controllers\UserController::class, 'datatable'])->name('user.datatable');
+            Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\UserController::class, 'index'])->name('user');
+        }
+    );
 
 
-Route::prefix('admin')->group(
-    function () {
-        Route::get('/datatable', [\App\Http\Controllers\AdminController::class, 'datatable'])->name('admin.datatable');
-        Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin');
-    }
-);
+    Route::prefix('admin')->group(
+        function () {
+            Route::get('/datatable', [\App\Http\Controllers\AdminController::class, 'datatable'])->name('admin.datatable');
+            Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+        }
+    );
+    Route::prefix('transaksi')->group(
+        function () {
+            Route::get('/datatable', [\App\Http\Controllers\TransaksiController::class, 'datatable'])->name('transaksi.datatable');
+            Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\TransaksiController::class, 'index'])->name('transaksi');
+            Route::get('detail/{id}',[\App\Http\Controllers\TransaksiController::class,'detail']);
+        }
+    );
+});

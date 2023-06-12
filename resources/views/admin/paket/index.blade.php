@@ -187,7 +187,7 @@
                 {
                     // data: 'public_health_center.name', name: 'public_health_center.name'
                     data: 'gambar', name: 'gambar', render(e){
-                        return '<img src="'+e+'"/>'
+                        return '<img src="'+e+'" style="height: 100px"/>'
                     }
                 },
                 {
@@ -211,7 +211,7 @@
 
 
         function saveForm() {
-            confirmSave('Simpan Data Berita', 'Apa anda yakin ?', 'form', '{{route('paket')}}', afterSave);
+            confirmSave('Simpan Data Paket', 'Apa anda yakin ?', 'form', '{{route('paket')}}', afterSave);
             return false
         }
 

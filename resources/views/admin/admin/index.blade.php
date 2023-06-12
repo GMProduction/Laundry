@@ -13,6 +13,11 @@
             <div class=" p-5 mt-3">
                 <div class="flex gap-5">
                     <p class="flex-grow">Admin</p>
+                    <button id="addData"
+                            class="font-bold  p-2 bg-green-600 rounded-md text-white transition-all duration-300  hover:bg-green-400"
+                            type="button">Tambah
+                        Data
+                    </button>
                 </div>
                 <hr class="mb-5 mt-2">
 
@@ -44,7 +49,7 @@
     </div>
     <div id="modal" tabindex="-1" aria-hidden="true"
          class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
-        <div class="relative w-full h-full max-w-4xl md:h-auto">
+        <div class="relative w-full h-full max-w-sm md:h-auto">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <!-- Modal header -->
@@ -53,7 +58,8 @@
                         Tambah Data Blog
                     </h3>
                     <button type="button"
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="modal.hide()">
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            onclick="modal.hide()">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                              xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -77,29 +83,40 @@
                                    placeholder="">
                         </div>
                         <div class="mb-6 mt-6">
-                            <label for="isiberita" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Deskripsi
+                            <label for="isiberita" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username
                             </label>
-                            <textarea name="deskripsi" id="deskripsi" class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "></textarea>
-                        </div>
-                        <div class="mb-6 mt-6">
-                            <label for="tanggal"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga Paket
-                            </label>
-                            <input type="number" id="harga" name="harga"
-                                   class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block max-w-sm p-2.5 "
+                            <input type="text" id="username" name="username"
+                                   class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                    placeholder="">
                         </div>
-
-                        <div class="w-44">
-                            <label for="fotoberita"
-                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukan
-                                Foto</label>
-                            <input type="file" id="image" name="image" class="dropImage" data-min-height="10"
-                                   data-heigh="400" accept="image/*"
-                                   data-allowed-file-extensions="jpg jpeg png"/>
-
+                        <div class="mb-6 mt-6">
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password
+                            </label>
+                            <div class="flex gap-1">
+                                <input type="password" id="password" name="password"
+                                       class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                       placeholder="">
+                                <span class="flex items-center"><a role="button" id="btnShow" onclick="showPass(this,'password')" class="hide"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                    </svg>
+                                    </a>
+                                </span>
+                            </div>
                         </div>
-
+                        <div class="mb-6 mt-6">
+                            <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password Confirmation
+                            </label>
+                            <div class="flex gap-1">
+                                <input type="password" id="password_confirmation" name="password_confirmation"
+                                       class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                       placeholder="">
+                                <span class="flex items-center"><a role="button" id="btnShow" onclick="showPass(this,'password_confirmation')" class="hide"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                                    </svg>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <!-- Modal footer -->
                     <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -131,10 +148,29 @@
 
             }
         });
+
+        function showPass(a, field) {
+            console.log('asdasd',$(a)[0].className);
+            if ($(a)[0].className == 'show') {
+                $(a).removeClass('show').addClass('hide');
+                $(a).html('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
+                    '                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />\n' +
+                    '                                    </svg>')
+                $('#' + field).get(0).type = 'password'
+            } else {
+                $(a).removeClass('hide').addClass('show');
+                $(a).html('<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">\n' +
+                    '                                    <path stroke-linecap="round" stroke-linejoin="round"\n' +
+                    '                                          d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"/>\n' +
+                    '                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>\n' +
+                    '                                    </svg>')
+
+                $('#' + field).get(0).type = 'text'
+            }
+        }
         $(document).ready(function () {
             showDatatable();
         })
-
 
         $(document).on('click', '#addData, .editData', function () {
             $('.Form-edit').val('')
@@ -143,24 +179,9 @@
             let value = "";
 
             $.each(row, function (k, v) {
-                $('#'+k).val(v)
+                $('#' + k).val(v)
             })
 
-            imageSiswa = $('#image').dropify({
-                messages: {
-                    'default': 'Masukkan File Foto',
-                    'replace': 'Drag and drop or click to replace',
-                    'remove': 'Remove',
-                    'error': 'Ooops, something wrong happended.'
-                }
-            });
-
-            imageSiswa = imageSiswa.data('dropify');
-            imageSiswa.resetPreview();
-            imageSiswa.clearElement();
-            imageSiswa.settings.defaultFile = $(this).data('gambar');
-            imageSiswa.destroy();
-            imageSiswa.init();
             modal.show();
         })
 
@@ -188,9 +209,8 @@
 
         }
 
-
         function saveForm() {
-            confirmSave('Simpan Data Berita', 'Apa anda yakin ?', 'form', '{{route('admin')}}', afterSave);
+            confirmSave('Simpan Data Admin', 'Apa anda yakin ?', 'form', '{{route('admin')}}', afterSave);
             return false
         }
 

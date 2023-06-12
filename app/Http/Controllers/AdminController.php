@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
 class AdminController extends Controller
 {
     public function datatable()
     {
-        $data = User::where('role','admin');
+        $data = User::where('role', 'admin');
 
         return DataTables::of($data)
                          ->addColumn(
@@ -25,9 +26,70 @@ class AdminController extends Controller
                          )->rawColumns(['action'])->make(true);
     }
 
-    public function index(){
+    public function index()
+    {
+        if (request()->method() == 'POST') {
+            return $this->saveData();
+        }
+
         return view('admin/admin/index');
     }
 
+    public function saveData()
+    {
+        $data = User::find(request('id'));
+
+        if ($data) {
+            request()->validate(
+                [
+                    'nama'     => 'required',
+                    'username' => 'required',
+                ],
+                [
+                    'nama.required'     => 'Nama harus di isi',
+                    'username.required' => 'Username harus di isi',
+                ]
+            );
+
+            $field['nama']     = request('nama');
+            $field['username'] = request('username');
+
+            if (request('password')) {
+                request()->validate(
+                    [
+                        'password' => 'confirmed|min:8',
+                    ],
+                    [
+                        'password.confirmed' => 'Password tidak sesuai',
+                        'password.min'       => 'Password harus lebih dari 8 karakter',
+                    ]
+                );
+                $field['password'] = Hash::make(request('password'));
+            }
+            $data->update($field);
+        } else {
+            request()->validate(
+                [
+                    'nama'     => 'required',
+                    'username' => 'required',
+                    'password' => 'confirmed|min:8',
+                ],
+                [
+                    'nama.required'      => 'Nama harus di isi',
+                    'username.required'  => 'Username harus di isi',
+                    'password.confirmed' => 'Password tidak sesuai',
+                    'password.min'       => 'Password harus lebih dari 8 karakter',
+                ]
+            );
+            $field['nama']     = request('nama');
+            $field['username'] = request('username');
+            $field['role']     = 'admin';
+            $field['password'] = Hash::make(request('password'));
+
+            User::create($field);
+        }
+
+        return 'success';
+    }
 
 }

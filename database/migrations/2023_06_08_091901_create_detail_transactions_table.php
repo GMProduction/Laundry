@@ -15,9 +15,9 @@ class CreateDetailTransactionsTable extends Migration
     {
         Schema::create('detail_transaksi', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('transaksi_id')->unsigned()->unique();
+            $table->bigInteger('transaksi_id')->unsigned()->nullable(true);
             $table->foreign('transaksi_id')->references('id')->on('transaksi');
-            $table->bigInteger('paket_id')->unsigned()->unique();
+            $table->bigInteger('paket_id')->unsigned();
             $table->foreign('paket_id')->references('id')->on('paket');
             $table->integer('qty');
             $table->integer('harga');

@@ -67,8 +67,10 @@
         <div class=" h-full flex items-center">
             <button type="button" id="dropdownDefault" data-dropdown-toggle="dropdown"
                     class="block w-[35px] h-[35px] rounded-full bg-black/10 cursor-pointer overflow-hidden">
-                <img src="{{ asset('local/images/account.png') }}" class="logo   h-full w-full   "
-                     alt="Profil Logo">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+
             </button>
 
 
@@ -97,59 +99,57 @@
 
 
 
-            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link" href="/admin">
+            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link flex items-center gap-1" href="/admin">
 
-                <img src="{{ asset('local/icons/dashboard.svg') }}"
-                     class=" mr-2 menu-icon text-sm w-6 object-scale-down">
-                <p class="title-menu block menu-text">Beranda</p>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                </div>
+                <p class="title-menu block menu-text m-0 p-0">Beranda</p>
             </a>
-            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link"
+            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link flex items-center gap-1"
                href="{{route('paket')}}">
 
-                <img src="{{ asset('local/icons/info.svg') }}"
-                     class=" mr-2 menu-icon text-sm w-6 object-scale-down">
+              <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                  </svg>
+              </div>
                 <p class="title-menu block menu-text">Paket</p>
             </a>
-            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link"
+            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link flex items-center gap-1"
                href="{{route('user')}}">
 
-                <img src="{{ asset('local/icons/book.svg') }}"
-                     class=" mr-2 menu-icon text-sm w-6 object-scale-down">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
                 <p class="title-menu block menu-text">User</p>
             </a>
 
-            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link"
+            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link flex items-center gap-1"
                href="{{route('admin')}}">
 
-                <img src="{{ asset('local/icons/news.svg') }}"
-                     class=" mr-2 menu-icon text-sm w-6 object-scale-down">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
                 <p class="title-menu block menu-text">Admin</p>
             </a>
 
-            {{-- <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link"
-                href="{{ route('admintestimoni') }}">
+            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link flex items-center gap-1"
+               href="{{route('transaksi')}}">
 
-                <img src="{{ asset('local/icons/dashboard.svg') }}"
-                    class=" mr-2 menu-icon text-sm w-6 object-scale-down">
-                <p class="title-menu block menu-text">Testimoni</p>
-            </a> --}}
-
-            <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link"
-               href="">
-
-                <img src="{{ asset('local/icons/feed.svg') }}"
-                     class=" mr-2 menu-icon text-sm w-6 object-scale-down">
-                <p class="title-menu block menu-text">Blog</p>
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                </div>
+                <p class="title-menu block menu-text">Transaksi</p>
             </a>
-
-
-            {{-- <a class="menu {{ request()->is('/') ? 'bg-primarylight' : '' }}  nav-link"
-                href="{{ route('adminkontak') }}">
-
-                <img src="{{ asset('local/icons/dashboard.svg') }}"
-                    class=" mr-2 menu-icon text-sm w-6 object-scale-down">
-                <p class="title-menu block menu-text">Kontak</p>
-            </a> --}}
         </div>
     </div>
 
@@ -218,12 +218,20 @@
 {{--            src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>--}}
 
 <script src="{{ asset('js/admin/datatable.js') }}"></script>
+<script src="{{ asset('js/admin/moment.min.js') }}"></script>
 
 
 @yield('morejs')
 
 
+
 <script>
+
+    $(document).ready(function () {
+        moment.locale('id');
+    })
+
+
     jQuery.fn.dataTableExt.oApi.fnPagingInfo = function (oSettings) {
         return {
             "iStart": oSettings._iDisplayStart,

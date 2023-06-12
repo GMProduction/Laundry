@@ -19,4 +19,8 @@ class DetailTransaction extends Model
         'total',
     ];
 
+    public function paket(){
+        return $this->belongsTo(Package::class,'paket_id');
+    }
+
 }
