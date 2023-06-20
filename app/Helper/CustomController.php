@@ -50,4 +50,23 @@ class CustomController
             unlink(public_path().$name);
         }
     }
+
+    public function jsonResponse($msg = '', $status = 200, $data = null)
+    {
+        return response()->json([
+            'status' => $status,
+            'message' => $msg,
+            'payload' => $data
+        ], $status);
+    }
+
+    public function generateTokenById($id, $role)
+    {
+
+        return auth('api')->setTTL(null)
+            ->claims([
+                'role' => $role,
+            ])->tokenById($id);
+    }
+
 }

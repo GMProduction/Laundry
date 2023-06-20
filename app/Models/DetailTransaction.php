@@ -12,6 +12,7 @@ class DetailTransaction extends Model
     protected $table = 'detail_transaksi';
     protected $fillable = [
         'transaksi_id',
+        'user_id',
         'paket_id',
         'qty',
         'harga',
