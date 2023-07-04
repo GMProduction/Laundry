@@ -23,6 +23,10 @@ Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'regi
 
 Route::group(['middleware' => ['jwt.verify']], function (){
 
+    Route::group(['prefix' => 'profile'], function (){
+        Route::get('/', [\App\Http\Controllers\Api\ProfilController::class, 'index']);
+    });
+
     Route::group(['prefix' => 'paket'], function (){
         Route::get('/', [\App\Http\Controllers\Api\PaketController::class, 'index']);
         Route::get('/{id}', [\App\Http\Controllers\Api\PaketController::class, 'detail']);
