@@ -79,7 +79,8 @@ class TransaksiController extends CustomController
                 'tanggal' => Carbon::now()->format('Y-m-d'),
                 'sub_total' => $subTotal,
                 'diskon' => $discount,
-                'total' => $total
+                'total' => $total,
+                'alamat' => request()->request->get('alamat'),
             ];
             $transaction = Transaction::create($data);
             foreach ($carts as $cart) {
