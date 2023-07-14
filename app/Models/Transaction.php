@@ -17,6 +17,7 @@ class Transaction extends Model
         'diskon',
         'total',
         'status',
+        'alamat',
     ];
 
     public function user(){
