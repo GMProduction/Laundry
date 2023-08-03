@@ -33,4 +33,14 @@ class TransaksiController extends Controller
         return Transaction::with(['detail.paket','user'])->find($id);
     }
 
+    public function changeStatus($id){
+        $status = request('status');
+        $trans = Transaction::find($id);
+        $trans->update([
+            'status' => $status
+        ]);
+
+        return 'success';
+    }
+
 }

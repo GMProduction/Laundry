@@ -104,6 +104,88 @@ function confirmSave(title, text, form, url, resposeSuccess) {
     });
 }
 
+
+function confirmSaveSerialize(title, text, form_data, url, resposeSuccess) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "POST",
+                data: form_data,
+                url: url ?? window.location.pathname,
+                async: true,
+                // processData: false,
+                // contentType: false,
+                headers: {
+                    Accept: "application/json",
+                },
+                success: function (data, textStatus, xhr) {
+                    console.log(data);
+
+                    if (xhr.status === 200 || xhr.status === 201) {
+                        if (resposeSuccess) {
+                            Swal.fire({
+                                icon: "success",
+                                title: data.status_text ? data.status_text : "Data berhasil disimpan",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                            resposeSuccess(data);
+                        } else {
+                            window.location.reload();
+                        }
+                    }
+                    // else {
+                    //
+                    //     Swal.fire({
+                    //         icon: "error",
+                    //         title: "Gagal simpan data",
+                    //         showConfirmButton: false,
+                    //         timer: 1500,
+                    //     });
+                    // }
+                },
+                complete: function (xhr, textStatus) {
+                    console.log(xhr.status);
+                    console.log(textStatus);
+                },
+                error: function (error, xhr, textStatus) {
+                    // console.log("LOG ERROR", error.responseJSON.errors);
+                    // console.log("LOG ERROR", error.responseJSON.errors[Object.keys(error.responseJSON.errors)[0]][0]);
+                    console.log(xhr.status);
+                    console.log(textStatus);
+                    console.log(error.responseJSON.errors);
+                    console.log(
+                        "warning",
+                        error.responseJSON.errors
+                            ? error.responseJSON.errors[
+                                Object.keys(error.responseJSON.errors)[0]
+                                ][0]
+                            : error.responseJSON["message"],
+                        "warning"
+                    );
+                    Swal.fire(
+                        "warning",
+                        error.responseJSON.errors
+                            ? error.responseJSON.errors[
+                                Object.keys(error.responseJSON.errors)[0]
+                                ][0]
+                            : error.responseJSON["message"],
+                        "warning"
+                    );
+                },
+            });
+        }
+    });
+}
+
 function confirmDeleteSerialize(title, text, form_data, url, resposeSuccess) {
     console.log('asdasd', form_data)
     Swal.fire({

@@ -43,6 +43,9 @@
                                 Total
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -62,7 +65,7 @@
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        No. Transaksi #<span id="noTrans"></span>
+                        No. Transaksi #<span id="noTrans"></span> <span id="txtStatus"></span>
                     </h3>
                     <button type="button"
                             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -80,14 +83,14 @@
 
                 <div class="p-6 space-y-6">
                     <div class="mb-6 grid grid-cols-2 gap-2">
-                       <div class="">
-                           <label for="judulberita"
-                                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama User
-                           </label>
-                           <input type="text" id="nama" name="nama" readonly
-                                  class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                                  placeholder="">
-                       </div>
+                        <div class="">
+                            <label for="judulberita"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama User
+                            </label>
+                            <input type="text" id="nama" name="nama" readonly
+                                   class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                   placeholder="">
+                        </div>
                         <div class="">
                             <label for="judulberita"
                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi
@@ -97,7 +100,16 @@
                                    placeholder="">
                         </div>
                     </div>
-
+                    <div class="mb-6 grid grid-cols-2 gap-2">
+                        <div class="">
+                            <label for="alamat"
+                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat
+                            </label>
+                            <textarea type="text" id="alamat" name="alamat" readonly
+                                      class="Form-edit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                      placeholder=""></textarea>
+                        </div>
+                    </div>
 
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -115,7 +127,8 @@
 
                 </div>
                 <!-- Modal footer -->
-                <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <div id="btnChange" class="flex justify-end items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+
                 </div>
             </div>
         </div>
@@ -124,9 +137,9 @@
 
 @section('morejs')
 
-
     <script>
         const targetModal = document.getElementById('modal');
+        let idTrans;
         let modal = new Modal(targetModal, {
             placement: 'center',
             backdrop: 'dynamic',
@@ -141,40 +154,121 @@
             showDatatable();
         })
 
+        function getStatus(stat) {
+            let text, next = '';
+            switch (stat) {
+                case 1:
+                    text = 'Diterima';
+                    break;
+                case 2:
+                    text = 'Diproses';
+                    break;
+                case 3:
+                    text = 'Dikirim';
+                    break;
+                case 4:
+                    text = 'Selesai';
+                    break;
+                case 5:
+                    text = 'Ditolak';
+                    break;
+                default:
+                    text = "Menunggu Konfirmasi";
+                    break;
+            }
+            return text;
+        }
+
+        function getBtn(stat) {
+            let btn;
+            switch (stat) {
+                case 0:
+                    btn = '<a class="changeStatus font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400" data-text="Terima" data-status="1">Terima</a>' +
+                        '<a class="changeStatus font-bold cursor-pointer p-2 bg-red-600 rounded-md text-white transition-all duration-300  hover:bg-red-400" data-text="Tolak" data-status="5">Tolak</a>';
+                    break;
+                case 1:
+                    btn = '<a class="changeStatus font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400" data-text="Proses" data-status="2">Proses</a>';
+                    break;
+                case 2:
+                    btn = '<a class="changeStatus font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400" data-text="Kirim" data-status="3">Dikirim</a>';
+                    break;
+                case 3:
+                    btn = '<label class="font-bold p-2 text-blue-600 rounded-md  transition-all duration-300" >Menunggu Penerima</label>';
+                    break;
+                default:
+                    btn = '';
+                    break;
+            }
+            return btn;
+        }
+
+        $(document).on('click','.changeStatus', function () {
+            let text = $(this).data('text');
+            let status = $(this).data('status');
+            console.log(text);
+            console.log(status);
+            let form = {
+                '_token':'{{csrf_token()}}',
+                status: status
+            }
+
+            confirmSaveSerialize(capitalizeFirstLetter(text)+' Pesanan', 'Apa anda yakin ?', form, '/transaksi/detail/' + idTrans+'/change-status', afterSave);
+            return false
+
+        })
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function afterSave(){
+            showDetailData();
+            $('#table').DataTable().ajax.url('{{route('transaksi.datatable')}}').load()
+        }
+
         $(document).on('click', '#addData, .editData', function () {
-            let id = $(this).data('id');
+            idTrans = $(this).data('id');
+
+            showDetailData();
+            modal.show();
+        })
+
+        function showDetailData(){
             let tb = $('#tbDetail');
             tb.empty();
-            $.get('/transaksi/detail/' + id, function (res) {
+            $.get('/transaksi/detail/' + idTrans, function (res) {
+                let status = getStatus(res.status);
+
                 $('#noTrans').html(res.no_transaksi);
                 $('#modal #nama').val(res.user.nama);
+                $('#modal #btnChange').html(getBtn(res.status));
+                $('#modal #alamat').val(res.alamat);
+                $('#modal #txtStatus').html('( ' + status + ' )');
                 $('#modal #tanggal').val(moment(res.tanggal).format('DD MMMM YYYY'));
                 $.each(res.detail, function (k, v) {
                     tb.append('<tr>' +
-                        '         <td class="px-6 py-4">'+parseInt(k + 1)+'</td>' +
-                        '         <td class="px-6 py-4">'+v.paket.nama+'</td>' +
-                        '         <td class="text-center px-6 py-4">'+v.qty+'</td>' +
-                        '         <td class="text-right px-6 py-4">Rp. '+v.harga.toLocaleString()+'</td>' +
-                        '         <td class="text-center px-6 py-4">'+v.berat+'</td>' +
-                        '         <td class="text-right px-6 py-4">Rp. '+v.total.toLocaleString()+'</td>' +
+                        '         <td class="px-6 py-4">' + parseInt(k + 1) + '</td>' +
+                        '         <td class="px-6 py-4">' + v.paket.nama + '</td>' +
+                        '         <td class="text-center px-6 py-4">' + v.qty + '</td>' +
+                        '         <td class="text-right px-6 py-4">Rp. ' + v.harga.toLocaleString() + '</td>' +
+                        '         <td class="text-center px-6 py-4">' + v.berat + '</td>' +
+                        '         <td class="text-right px-6 py-4">Rp. ' + v.total.toLocaleString() + '</td>' +
                         '      </tr>');
                 })
                 tb.append('<tr>' +
                     '           <td colspan="5" class="px-6 py-2">Sub Total</td>' +
-                    '           <td class="text-right px-6 py-2">Rp. '+res.sub_total.toLocaleString()+'</td>' +
+                    '           <td class="text-right px-6 py-2">Rp. ' + res.sub_total.toLocaleString() + '</td>' +
                     '      <tr>');
                 tb.append('<tr>' +
                     '           <td colspan="5" class="px-6 py-2">Diskon</td>' +
-                    '           <td class="text-right  px-6 py-2">'+res.diskon.toLocaleString()+' %</td>' +
+                    '           <td class="text-right  px-6 py-2">' + res.diskon.toLocaleString() + ' %</td>' +
                     '      <tr>');
                 tb.append('<tr>' +
                     '           <td colspan="5" class="px-6 py-2">Diskon</td>' +
-                    '           <td class="text-right  px-6 py-2">Rp. '+res.total.toLocaleString()+'</td>' +
+                    '           <td class="text-right  px-6 py-2">Rp. ' + res.total.toLocaleString() + '</td>' +
                     '      <tr>');
             });
-
-            modal.show();
-        })
+        }
 
         function showDatatable() {
             let colums = [
@@ -194,7 +288,7 @@
                     data: 'user.nama', name: 'user.nama'
                 },
                 {
-                    data: 'sub_total', name: 'sub_total', render(e){
+                    data: 'sub_total', name: 'sub_total', render(e) {
                         return e.toLocaleString()
                     }
                 },
@@ -202,8 +296,13 @@
                     data: 'diskon', name: 'diskon'
                 },
                 {
-                    data: 'total', name: 'total', render(e){
+                    data: 'total', name: 'total', render(e) {
                         return e.toLocaleString()
+                    }
+                },
+                {
+                    data: 'status', name: 'status', render(e) {
+                        return getStatus(e)
                     }
                 },
                 {

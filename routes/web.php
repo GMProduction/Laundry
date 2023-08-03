@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function (){
             Route::get('/datatable', [\App\Http\Controllers\TransaksiController::class, 'datatable'])->name('transaksi.datatable');
             Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\TransaksiController::class, 'index'])->name('transaksi');
             Route::get('detail/{id}',[\App\Http\Controllers\TransaksiController::class,'detail']);
+            Route::post('detail/{id}/change-status',[\App\Http\Controllers\TransaksiController::class,'changeStatus'])->name('changeStatus');
         }
     );
 });
