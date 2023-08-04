@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function (){
             Route::match(['POST', 'GET'], '/', [\App\Http\Controllers\TransaksiController::class, 'index'])->name('transaksi');
             Route::get('detail/{id}',[\App\Http\Controllers\TransaksiController::class,'detail']);
             Route::post('detail/{id}/change-status',[\App\Http\Controllers\TransaksiController::class,'changeStatus'])->name('changeStatus');
+            Route::post('detail/{id}/change-weight',[\App\Http\Controllers\TransaksiController::class,'changeBerat'])->name('changeWeight');
         }
     );
 });

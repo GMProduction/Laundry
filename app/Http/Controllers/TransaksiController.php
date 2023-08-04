@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailTransaction;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class TransaksiController extends Controller
 {
 
-    public function datatable(){
+    public function datatable()
+    {
         $data = Transaction::with('user');
 
         return DataTables::of($data)
@@ -25,22 +28,60 @@ class TransaksiController extends Controller
                          )->rawColumns(['action'])->make(true);
     }
 
-    public function index(){
+    public function index()
+    {
         return view('admin/transaksi/index');
     }
 
-    public function detail($id){
-        return Transaction::with(['detail.paket','user'])->find($id);
+    public function detail($id)
+    {
+        return Transaction::with(['detail.paket', 'user'])->find($id);
     }
 
-    public function changeStatus($id){
+    public function changeStatus($id)
+    {
         $status = request('status');
-        $trans = Transaction::find($id);
+        $trans  = Transaction::find($id);
         $trans->update([
-            'status' => $status
+            'status' => $status,
         ]);
 
         return 'success';
+    }
+
+    public function changeBerat($id)
+    {
+        DB::beginTransaction();
+        try {
+            $idDetail = request('id_detail');
+            $berat    = request('berat');
+            $trans = Transaction::find($id);
+
+            $detail = DetailTransaction::find($idDetail);
+            $total = (int)$berat * $detail->harga;
+            $detail->update([
+                'berat' => $berat,
+                'total' => $total,
+            ]);
+
+            $detailAll = DetailTransaction::where('transaksi_id',$id)->get();
+            $subTotalTrans = 0;
+            foreach ($detailAll as $d){
+                $subTotalTrans = (int)$d->total + $subTotalTrans;
+            }
+            $totalTrans = $subTotalTrans - (int)$trans->diskon;
+
+            $trans->update([
+                'sub_total' => $subTotalTrans,
+                'total' => $totalTrans,
+            ]);
+            DB::commit();
+            return 'success';
+        }catch (\Exception $er){
+            DB::rollBack();
+            return $er->getMessage();
+        }
+
     }
 
 }
