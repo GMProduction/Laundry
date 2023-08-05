@@ -125,4 +125,20 @@ class TransaksiController extends CustomController
             return $this->jsonResponse('terjadi kesalahan server (' . $e->getMessage() . ')', 500);
         }
     }
+
+    public function pembayaran($id)
+    {
+        try {
+            $data = Transaction::find($id);
+            $data->status = 2;
+            $data->update();
+
+            if (!$data) {
+                return $this->jsonResponse('transaksi tidak ditemukan...', 404);
+            }
+            return $this->jsonResponse('success', 200, $data);
+        } catch (\Exception $e) {
+            return $this->jsonResponse('terjadi kesalahan server (' . $e->getMessage() . ')', 500);
+        }
+    }
 }
