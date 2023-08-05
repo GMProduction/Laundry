@@ -40,6 +40,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::group(['prefix' => 'transaksi'], function () {
         Route::get('/', [\App\Http\Controllers\Api\TransaksiController::class, 'transactions']);
         Route::get('/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'transactionsDetail']);
-        Route::get('/bayar/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'pembayaran']);
+        Route::post('/bayar/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'pembayaran']);
     });
 });
