@@ -12,7 +12,7 @@
 
             <div class=" p-5 mt-3">
                 <div class="flex gap-5">
-                    <p class="flex-grow">User</p>
+                    <p class="flex-grow">Transaksi</p>
                 </div>
                 <hr class="mb-5 mt-2">
 
@@ -383,7 +383,9 @@
                     }
                 },
                 {
-                    data: 'diskon', name: 'diskon'
+                    data: 'diskon', name: 'diskon', render(e) {
+                        return e.toLocaleString()
+                    }
                 },
                 {
                     data: 'total', name: 'total', render(e) {
