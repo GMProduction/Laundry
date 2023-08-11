@@ -83,6 +83,9 @@
                                 Total
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Metode Pembayaran
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Tanggal Selesai
                             </th>
                         </tr>
@@ -156,6 +159,9 @@
                     data: 'total', name: 'total', render(e) {
                         return e.toLocaleString()
                     }
+                },
+                {
+                    data: 'metode_pembayaran', name: 'metode_pembayaran'
                 },
                 {
                     data: 'updated_at', name: 'updated_at', render(e) {
