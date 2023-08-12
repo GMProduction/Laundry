@@ -12,7 +12,7 @@ class LaporanController extends Controller
     {
         $start = request('sd');
         $end = request('ed');
-        $data = Transaction::with('user');
+        $data = Transaction::with('user')->where('status',5);
         if ($start){
             $start = $start.' 00:00:00';
             $end = $end.' 23:59:59';
