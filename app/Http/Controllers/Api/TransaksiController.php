@@ -131,6 +131,7 @@ class TransaksiController extends CustomController
         try {
             $data = Transaction::find($id);
             $data->status = 2;
+            $data->metode_pembayaran = request()->request->get('metode');;
             $data->update();
 
             if (!$data) {
