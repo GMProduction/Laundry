@@ -18,6 +18,7 @@ class Transaction extends Model
         'total',
         'status',
         'alamat',
+        'metode_pembayaran'
     ];
 
     public function user(){

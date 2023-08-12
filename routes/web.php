@@ -56,4 +56,9 @@ Route::middleware('auth')->group(function (){
             Route::post('detail/{id}/change-weight',[\App\Http\Controllers\TransaksiController::class,'changeBerat'])->name('changeWeight');
         }
     );
+
+    Route::prefix('laporan')->group(function (){
+        Route::get('',[\App\Http\Controllers\LaporanController::class,'index'])->name('laporan');
+        Route::get('datatable',[\App\Http\Controllers\LaporanController::class,'datatable'])->name('laporan.datatable');
+    });
 });
