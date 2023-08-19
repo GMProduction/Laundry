@@ -60,5 +60,6 @@ Route::middleware('auth')->group(function (){
     Route::prefix('laporan')->group(function (){
         Route::get('',[\App\Http\Controllers\LaporanController::class,'index'])->name('laporan');
         Route::get('datatable',[\App\Http\Controllers\LaporanController::class,'datatable'])->name('laporan.datatable');
+        Route::get('cetak',[\App\Http\Controllers\LaporanController::class,'cetakLaporan'])->name('laporan.cetak');
     });
 });

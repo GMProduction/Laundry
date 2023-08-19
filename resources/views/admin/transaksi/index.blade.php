@@ -403,7 +403,7 @@
                 },
             ];
 
-            datatable('table', '{{route('transaksi.datatable')}}', colums)
+            datatable('table', '{{route('transaksi.datatable')}}', colums, null,['1','DESC'])
 
         }
 
