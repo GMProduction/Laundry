@@ -8,6 +8,7 @@ use App\Helper\CustomController;
 use App\Models\DetailTransaction;
 use App\Models\Package;
 use App\Models\Transaction;
+use App\Models\cart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -163,7 +164,7 @@ class TransaksiController extends CustomController
     public function delete($id)
     {
         try {
-            $data = Transaction::find($id);
+            $data = DetailTransaction::find($id);
             $data->delete();
 
             if (!$data) {
