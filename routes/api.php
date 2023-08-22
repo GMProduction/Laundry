@@ -35,6 +35,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::group(['prefix' => 'cart'], function () {
         Route::match(['post', 'get'], '/', [\App\Http\Controllers\Api\TransaksiController::class, 'cart']);
         Route::post('/checkout', [\App\Http\Controllers\Api\TransaksiController::class, 'checkout']);
+        Route::delete('/delete/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'delete']);
     });
 
     Route::group(['prefix' => 'transaksi'], function () {
