@@ -138,11 +138,11 @@
 
         <div>
             <h4 style=" text-align: center;margin-bottom:0 ;margin-top:0">
-                <img src="{{ public_path('/home/faku3695/public_html/yuli/assets/amanah.png') }}" width="200">
+                <img src="{{ public_path('assets/amanah.png') }}" width="200">
             </h4>
 
             <div>
-                <h4 style=" text-align: center;margin-bottom:5px ;margin-top:0">LAPORAN </h4>
+                <h4 style=" text-align: center;margin-bottom:5px ;margin-top:0">LAPORAN PEMASUKAN</h4>
                 @if (request('start'))
                     <h5 style=" text-align: center;margin-bottom:10px ;margin-top:0">Periode
                         {{ date_format(DateTime::createFromFormat('Y-m-d', request('start')), 'd M Y') }}
