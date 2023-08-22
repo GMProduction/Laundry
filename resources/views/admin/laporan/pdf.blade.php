@@ -140,6 +140,7 @@
             <h4 style=" text-align: center;margin-bottom:0 ;margin-top:0">
                 <img src="{{ public_path('assets/amanah-200.png') }}" width="200">
             </h4>
+
             <div>
                 <h4 style=" text-align: center;margin-bottom:5px ;margin-top:0">LAPORAN PEMASUKAN</h4>
                 @if (request('start'))
