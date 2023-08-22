@@ -8,14 +8,12 @@
     <div class="panel min-h-screen">
 
 
-
-
         <div class="bg-white border rounded-md  p-5 my-3">
 
             <div class="border rounded-lg p-2 flex gap-4 mb-8">
                 <div date-rangepicker class="flex items-center">
                     <div>
-                        <p  class="flex-grow">Tanggal Awal</p>
+                        <p class="flex-grow">Tanggal Awal</p>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -30,7 +28,7 @@
                     </div>
                     <span class="mx-4 text-gray-500">to</span>
                     <div>
-                        <p  class="flex-grow">Tanggal Akhir</p>
+                        <p class="flex-grow">Tanggal Akhir</p>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -44,9 +42,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex items-end gap-2">
-                    <a class="font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400" onclick="searchTable()">Cari</a>
-                    <a class="font-bold cursor-pointer p-2 bg-red-600 rounded-md text-white transition-all duration-300  hover:bg-red-400" onclick="clearData()">Clear</a>
+                <div class="flex items-end gap-2 justify-between w-full">
+                    <div class="flex items-end gap-2">
+                        <a class="font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400" onclick="searchTable()">Cari</a>
+                        <a class="font-bold cursor-pointer p-2 bg-red-600 rounded-md text-white transition-all duration-300  hover:bg-red-400" onclick="clearData()">Clear</a>
+                    </div>
+                    <a class="font-bold cursor-pointer p-2 bg-orange-500 rounded-md text-white transition-all duration-300  hover:bg-orange-400" target="_blank" id="cetak">Cetak</a>
                 </div>
 
             </div>
@@ -103,25 +104,27 @@
 @section('morejs')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/datepicker.min.js"></script>
     <script>
-
+        let start = '', end = '';
         $(document).ready(function () {
             showDatatable();
         })
 
         function searchTable() {
-            let start = $('#start').val();
-            let end = $('#end').val();
-            if (start){
-                start = moment(start,'MM/DD/YYYY').format('YYYY-MM-DD')
-                end = moment(end,'MM/DD/YYYY').format('YYYY-MM-DD')
+            start = $('#start').val();
+            end = $('#end').val();
+            if (start) {
+                start = moment(start, 'MM/DD/YYYY').format('YYYY-MM-DD')
+                end = moment(end, 'MM/DD/YYYY').format('YYYY-MM-DD')
             }
-            let url = '/laporan/datatable?sd='+start+'&ed='+end;
+            let url = '/laporan/datatable?sd=' + start + '&ed=' + end;
             $('#table').DataTable().ajax.url(url).load()
         }
 
-        function clearData(){
-            $('#start').val('');
-            $('#end').val('');
+        function clearData() {
+            start = ''
+            end = '';
+            $('#start').val(start);
+            $('#end').val(end);
             let url = '{{route('laporan.datatable')}}';
             $('#table').DataTable().ajax.url(url).load()
         }
@@ -170,10 +173,17 @@
                 },
             ];
 
-            datatable('table', '{{route('laporan.datatable')}}', colums)
+            datatable('table', '{{route('laporan.datatable')}}', colums, null, ['1', 'DESC'])
 
         }
 
-
+        $(document).on('click', '#cetak', function () {
+            console.log('asdasd')
+            let url =  '/laporan/cetak';
+            if (start){
+                url =  '/laporan/cetak?start=' + start + '&end=' + end;
+            }
+                $(this).attr('href',url);
+        })
     </script>
 @endsection
