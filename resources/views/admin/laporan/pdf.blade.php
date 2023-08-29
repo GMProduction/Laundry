@@ -218,6 +218,62 @@
             <p class="text-center">( ........................... )</p>
         </div>
 
+        <table style="margin-bottom: 10px">
+            <thead>
+                <tr>
+                    <th style="width: 10px" class="text-center">#</th>
+                    <th>Tanggal Pesan</th>
+                    <th>Nomor Transaksi</th>
+                    <th>Pelanggan</th>
+                    <th>Sub Total</th>
+                    <th>Diskon</th>
+                    <th>Total</th>
+                    <th>Metode Pembayaran</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @forelse($data as $key => $d)
+                    <tr>
+                        {{--                <td rowspan="{{count($d->cart) > 0 ? 2 : 1}}">{{$key+1}}</td> --}}
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ date_format(date_create($d->tanggal), 'd M Y') }}</td>
+                        <td>{{ $d->no_transaksi }}</td>
+                        <td>{{ $d->user->nama }}</td>
+                        <td>Rp. {{ number_format($d->sub_total) }}</td>
+                        <td>Rp. {{ number_format($d->diskon) }}</td>
+                        <td>Rp. {{ number_format($d->total) }}</td>
+                        <td>{{ $d->metode_pembayaran }}</td>
+                    </tr>
+                    {{--            @if (count($d->cart) > 0) --}}
+                    {{--                <tr> --}}
+                    {{--                    <td></td> --}}
+                    {{--                    <td colspan="2"> --}}
+                    {{--                        <table> --}}
+                    {{--                            @foreach ($d->cart as $c) --}}
+                    {{--                                <tr> --}}
+                    {{--                                    <td>{{$c->barangs->nama}}</td> --}}
+                    {{--                                    <td>{{$c->qty}}</td> --}}
+                    {{--                                    <td>{{$c->harga}}</td> --}}
+                    {{--                                    <td>{{$c->total}}</td> --}}
+                    {{--                                </tr> --}}
+                    {{--                            @endforeach --}}
+
+                    {{--                        </table> --}}
+                    {{--                    </td> --}}
+                    {{--                </tr> --}}
+                    {{--            @endif --}}
+                @empty
+                    <tr>
+                        <td colspan="5" class="text-center">Tidak ada data</td>
+                    </tr>
+                @endforelse
+                <tr>
+                    <td colspan="6" class="text-center">Total</td>
+                    <td class="text-center">Rp. {{ number_format($total) }}</td>
+                </tr>
+            </tbody>
+        </table>
 
         <footer class="footer">
             @php $date = new DateTime("now", new DateTimeZone('Asia/Bangkok') ); @endphp
