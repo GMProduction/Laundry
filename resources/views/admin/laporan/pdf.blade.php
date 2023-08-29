@@ -203,6 +203,10 @@
                 <td colspan="5" class="text-center">Tidak ada data</td>
             </tr>
         @endforelse
+        <tr>
+            <td colspan="6" class="text-center">Total</td>
+            <td class="text-center">Rp. {{number_format($total)}}</td>
+        </tr>
         </tbody>
     </table>
 

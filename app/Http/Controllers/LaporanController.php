@@ -46,8 +46,10 @@ class LaporanController extends Controller
         if (\request('start')){
             $trans = $trans->whereBetween('tanggal', ["$start 00:00:00", "$end 23:59:59"]);
         }
+        $total = $trans->sum('total');
         $trans = $trans->get();
-        return view('admin/laporan/pdf',['data' => $trans]);
+
+        return view('admin/laporan/pdf',['data' => $trans, 'total' => $total]);
     }
 
 }
