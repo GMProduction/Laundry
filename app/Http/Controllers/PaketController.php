@@ -15,17 +15,17 @@ class PaketController extends CustomController
         $data = DB::table('paket');
 
         return DataTables::of($data)
-                         ->addColumn(
-                             'action',
-                             function ($data) {
-                                 $id = $data->id;
+            ->addColumn(
+                'action',
+                function ($data) {
+                    $id = $data->id;
 
-                                 return "<a type=\"button\" data-id='".$id."' data-nama='".$data->nama."'  data-harga='".$data->harga."' data-deskripsi='".$data->deskripsi."' data-gambar='".$data->gambar."'
+                    return "<a type=\"button\" data-id='" . $id . "' data-nama='" . $data->nama . "'  data-harga='" . $data->harga . "' data-deskripsi='" . $data->deskripsi . "' data-gambar='" . $data->gambar . "'
                                        class=\"editData font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400\">Edit</a>
-                                    <a href=\"#\" data-id='".$id."'
+                                    <a href=\"#\" data-id='" . $id . "'
                                        class=\"deleteData font-bold p-2 bg-red-600 rounded-md text-white transition-all duration-300  hover:bg-red-400\">Hapus</a>";
-                             }
-                         )->rawColumns(['action'])->make(true);
+                }
+            )->rawColumns(['action'])->make(true);
     }
 
     public function index()
@@ -55,18 +55,18 @@ class PaketController extends CustomController
         $data            = Package::find(request('id'));
         $oldImg          = null;
         $imageName       = $this->generateImageName('image');
-        $destinationPath = public_path().'/assets/images/paket';
+        $destinationPath = public_path() . '/assets/images/paket';
         $field           = request()->all();
 
         if (request()->has('image')) {
-            $field['gambar'] = '/assets/images/paket/'.$imageName;
+            $field['gambar'] = '/assets/images/paket/' . $imageName;
         }
 
         if ($data) {
             $oldImg = $data->image;
             $data->update($field);
             $text = 'Berhasil edit data';
-        }else{
+        } else {
             Package::create($field);
             $text = 'Berhasil simpan data';
         }
@@ -80,5 +80,4 @@ class PaketController extends CustomController
             'status_text' => $text
         ];
     }
-
 }
