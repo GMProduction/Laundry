@@ -42,5 +42,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('/', [\App\Http\Controllers\Api\TransaksiController::class, 'transactions']);
         Route::get('/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'transactionsDetail']);
         Route::post('/bayar/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'pembayaran']);
+        Route::post('/selesai/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'selesai']);
     });
 });
