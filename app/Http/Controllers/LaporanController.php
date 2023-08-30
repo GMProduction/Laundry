@@ -12,25 +12,26 @@ class LaporanController extends Controller
     {
         $start = request('sd');
         $end = request('ed');
-        $data = Transaction::with('user')->where('status','>=', 2);
-        if ($start){
-            $start = $start.' 00:00:00';
-            $end = $end.' 23:59:59';
-            $data = $data->whereBetween('tanggal',[$start, $end]);
+        $data = Transaction::with('user')->where('status', '>=', 2);
+        if ($start) {
+            $start = $start . ' 00:00:00';
+            $end = $end . ' 23:59:59';
+            $data = $data->whereBetween('tanggal', [$start, $end]);
         }
 
         return DataTables::of($data)
-                        ->make(true);
+            ->make(true);
     }
 
-    public function index(){
+    public function index()
+    {
         return view('admin/laporan/index');
     }
 
     public function cetakLaporan()
     {
 
-//        return $this->dataTransaksi();
+        //        return $this->dataTransaksi();
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadHTML($this->dataTransaksi())->setPaper('f4', 'landscape')->save('Laporan.pdf');
 
@@ -43,13 +44,12 @@ class LaporanController extends Controller
         $trans = Transaction::with(['user']);
         $start = \request('start');
         $end = \request('end');
-        if (\request('start')){
+        if (\request('start')) {
             $trans = $trans->whereBetween('tanggal', ["$start 00:00:00", "$end 23:59:59"]);
         }
         $total = $trans->sum('total');
         $trans = $trans->get();
 
-        return view('admin/laporan/pdf',['data' => $trans, 'total' => $total]);
+        return view('admin/laporan/pdf', ['data' => $trans, 'total' => $total]);
     }
-
 }

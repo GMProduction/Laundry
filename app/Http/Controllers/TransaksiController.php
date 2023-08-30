@@ -15,17 +15,17 @@ class TransaksiController extends Controller
         $data = Transaction::with('user');
 
         return DataTables::of($data)
-                         ->addColumn(
-                             'action',
-                             function ($data) {
-                                 $id = $data->id;
+            ->addColumn(
+                'action',
+                function ($data) {
+                    $id = $data->id;
 
-                                 return "<a type=\"button\" data-id='".$id."'
-                                       class=\"editData font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400\">Edit</a>
-                                    <a href=\"#\" data-id='".$id."'
+                    return "<a type=\"button\" data-id='" . $id . "'
+                                       class=\"editData font-bold cursor-pointer p-2 bg-blue-600 rounded-md text-white transition-all duration-300  hover:bg-blue-400\">Detail</a>
+                                    <a href=\"#\" data-id='" . $id . "'
                                        class=\"deleteData font-bold p-2 bg-red-600 rounded-md text-white transition-all duration-300  hover:bg-red-400\">Hapus</a>";
-                             }
-                         )->rawColumns(['action'])->make(true);
+                }
+            )->rawColumns(['action'])->make(true);
     }
 
     public function index()
@@ -64,9 +64,9 @@ class TransaksiController extends Controller
                 'total' => $total,
             ]);
 
-            $detailAll = DetailTransaction::where('transaksi_id',$id)->get();
+            $detailAll = DetailTransaction::where('transaksi_id', $id)->get();
             $subTotalTrans = 0;
-            foreach ($detailAll as $d){
+            foreach ($detailAll as $d) {
                 $subTotalTrans = (int)$d->total + $subTotalTrans;
             }
             $totalTrans = $subTotalTrans - (int)$trans->diskon;
@@ -77,11 +77,9 @@ class TransaksiController extends Controller
             ]);
             DB::commit();
             return 'success';
-        }catch (\Exception $er){
+        } catch (\Exception $er) {
             DB::rollBack();
             return $er->getMessage();
         }
-
     }
-
 }

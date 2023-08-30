@@ -21,24 +21,26 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
 Route::post('/register', [\App\Http\Controllers\Api\AuthController::class, 'register']);
 
-Route::group(['middleware' => ['jwt.verify']], function (){
+Route::group(['middleware' => ['jwt.verify']], function () {
 
-    Route::group(['prefix' => 'profile'], function (){
+    Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [\App\Http\Controllers\Api\ProfilController::class, 'index']);
     });
 
-    Route::group(['prefix' => 'paket'], function (){
+    Route::group(['prefix' => 'paket'], function () {
         Route::get('/', [\App\Http\Controllers\Api\PaketController::class, 'index']);
         Route::get('/{id}', [\App\Http\Controllers\Api\PaketController::class, 'detail']);
     });
 
-    Route::group(['prefix' => 'cart'], function (){
+    Route::group(['prefix' => 'cart'], function () {
         Route::match(['post', 'get'], '/', [\App\Http\Controllers\Api\TransaksiController::class, 'cart']);
         Route::post('/checkout', [\App\Http\Controllers\Api\TransaksiController::class, 'checkout']);
+        Route::post('/delete/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'delete']);
     });
 
-    Route::group(['prefix' => 'transaksi'], function (){
-        Route::get( '/', [\App\Http\Controllers\Api\TransaksiController::class, 'transactions']);
+    Route::group(['prefix' => 'transaksi'], function () {
+        Route::get('/', [\App\Http\Controllers\Api\TransaksiController::class, 'transactions']);
         Route::get('/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'transactionsDetail']);
+        Route::post('/bayar/{id}', [\App\Http\Controllers\Api\TransaksiController::class, 'pembayaran']);
     });
 });

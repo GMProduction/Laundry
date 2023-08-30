@@ -8,6 +8,7 @@ use App\Helper\CustomController;
 use App\Models\DetailTransaction;
 use App\Models\Package;
 use App\Models\Transaction;
+use App\Models\cart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -117,6 +118,54 @@ class TransaksiController extends CustomController
                 ->where('user_id', '=', auth()->id())
                 ->orderBy('tanggal', 'DESC')
                 ->first();
+            if (!$data) {
+                return $this->jsonResponse('transaksi tidak ditemukan...', 404);
+            }
+            return $this->jsonResponse('success', 200, $data);
+        } catch (\Exception $e) {
+            return $this->jsonResponse('terjadi kesalahan server (' . $e->getMessage() . ')', 500);
+        }
+    }
+
+    public function pembayaran($id)
+    {
+        try {
+            $data = Transaction::find($id);
+            $data->status = 2;
+            $data->metode_pembayaran = request()->request->get('metode');;
+            $data->update();
+
+            if (!$data) {
+                return $this->jsonResponse('transaksi tidak ditemukan...', 404);
+            }
+            return $this->jsonResponse('success', 200, $data);
+        } catch (\Exception $e) {
+            return $this->jsonResponse('terjadi kesalahan server (' . $e->getMessage() . ')', 500);
+        }
+    }
+
+    public function selesai($id)
+    {
+        try {
+            $data = Transaction::find($id);
+            $data->status = 5;
+            $data->update();
+
+            if (!$data) {
+                return $this->jsonResponse('transaksi tidak ditemukan...', 404);
+            }
+            return $this->jsonResponse('success', 200, $data);
+        } catch (\Exception $e) {
+            return $this->jsonResponse('terjadi kesalahan server (' . $e->getMessage() . ')', 500);
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $data = DetailTransaction::find($id);
+            $data->delete();
+
             if (!$data) {
                 return $this->jsonResponse('transaksi tidak ditemukan...', 404);
             }
