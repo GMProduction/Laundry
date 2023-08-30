@@ -43,7 +43,7 @@ class TransaksiController extends CustomController
                 return $this->jsonResponse('paket tidak ditemukan...', 404);
             }
             $harga = $paket->harga;
-            $total = (int)$berat * $harga;
+            $total = (float)$berat * $harga;
             $data = [
                 'user_id' => auth()->id(),
                 'paket_id' => $paket_id,
