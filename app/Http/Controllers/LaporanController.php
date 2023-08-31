@@ -12,7 +12,7 @@ class LaporanController extends Controller
     {
         $start = request('sd');
         $end = request('ed');
-        $data = Transaction::with('user')->where('status', '>=', 2);
+        $data = Transaction::with('user')->where('status', '>=', 3);
         if ($start) {
             $start = $start . ' 00:00:00';
             $end = $end . ' 23:59:59';
@@ -48,7 +48,7 @@ class LaporanController extends Controller
             $trans = $trans->whereBetween('tanggal', ["$start 00:00:00", "$end 23:59:59"]);
         }
         $total = $trans->sum('total');
-        $trans = $trans->get();
+        $trans = $trans->orderBy('no_transaksi','DESC')->get();
 
         return view('admin/laporan/pdf', ['data' => $trans, 'total' => $total]);
     }

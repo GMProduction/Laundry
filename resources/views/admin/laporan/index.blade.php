@@ -173,7 +173,7 @@
                 },
             ];
 
-            datatable('table', '{{route('laporan.datatable')}}', colums, null, ['1', 'DESC'])
+            datatable('table', '{{route('laporan.datatable')}}', colums, null, ['2', 'DESC'])
 
         }
 
