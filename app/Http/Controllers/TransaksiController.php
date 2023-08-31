@@ -58,7 +58,7 @@ class TransaksiController extends Controller
             $trans = Transaction::find($id);
 
             $detail = DetailTransaction::find($idDetail);
-            $total = (int)$berat * $detail->harga;
+            $total = (float)$berat * $detail->harga;
             $detail->update([
                 'berat' => $berat,
                 'total' => $total,
@@ -67,9 +67,9 @@ class TransaksiController extends Controller
             $detailAll = DetailTransaction::where('transaksi_id', $id)->get();
             $subTotalTrans = 0;
             foreach ($detailAll as $d) {
-                $subTotalTrans = (int)$d->total + $subTotalTrans;
+                $subTotalTrans = (float)$d->total + $subTotalTrans;
             }
-            $totalTrans = $subTotalTrans - (int)$trans->diskon;
+            $totalTrans = $subTotalTrans - (float)$trans->diskon;
 
             $trans->update([
                 'sub_total' => $subTotalTrans,
